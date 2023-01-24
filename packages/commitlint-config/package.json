@@ -1,0 +1,24 @@
+{
+  "name": "@mediamonks/commitlint-config",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": "frontend.monks",
+  "homepage": "https://github.com/mediamonks/commitlint-config#readme",
+  "bugs": {
+    "url": "https://github.com/mediamonks/commitlint-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mediamonks/eslint-config.git"
+  },
+  "description": "Sharable commitlint config based on Media.Monks Frontend Coding Standards",
+  "keywords": [
+    "Media.Monks",
+    "commitlint",
+    "commitlint-config"
+  ],
+  "main": "index.js"
+}

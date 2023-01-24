@@ -1,0 +1,46 @@
+{
+  "name": "@mediamonks/commitlint-config-root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT",
+  "author": "frontend.monks",
+  "scripts": {
+    "eslint": "npm run eslint --workspaces --if-present",
+    "eslint:fix": "npm run eslint:fix --workspaces --if-present",
+    "format": "prettier --write \"./**/*.{ts,js,tsx,jsx,json}\"",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@mediamonks/eslint-config": "*",
+    "@mediamonks/prettier-config": "^1.0.1",
+    "eslint": "^8.28.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "commitlint": {
+    "extends": [
+      "./packages/commitlint-config"
+    ]
+  },
+  "prettier": "@mediamonks/prettier-config",
+  "eslintConfig": {
+    "extends": "@mediamonks/eslint-config",
+    "env": {
+      "node": true,
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    }
+  },
+  "lint-staged": {
+    "*.{js,md,json}": "prettier --write"
+  }
+}
