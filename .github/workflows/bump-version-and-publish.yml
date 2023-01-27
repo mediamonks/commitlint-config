@@ -17,6 +17,7 @@ on:
         required: false
         type: choice
         options:
+          - select-option-if-prerelease
           - alpha
           - beta
           - rc
@@ -26,6 +27,7 @@ on:
         type: choice
         options:
           - commitlint-config
+          - commitlint-issue-reference
 
 jobs:
   bump-version:
