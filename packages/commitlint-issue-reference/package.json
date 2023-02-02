@@ -114,7 +114,7 @@
   "dependencies": {
     "@commitlint/is-ignored": "^17.4.2",
     "@types/get-stdin": "^7.0.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.2.0",
     "get-stdin": "^9.0.0",
     "yargs": "^17.6.2"
   }
