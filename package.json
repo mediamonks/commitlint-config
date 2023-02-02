@@ -7,9 +7,9 @@
   "license": "MIT",
   "author": "frontend.monks",
   "scripts": {
-    "eslint": "npm run eslint --workspaces --if-present",
-    "eslint:fix": "npm run eslint:fix --workspaces --if-present",
-    "format": "prettier --write \"./**/*.{ts,js,tsx,jsx,json}\"",
+    "lint": "npm run lint --workspaces --if-present",
+    "fix": "npm run fix --workspaces --if-present",
+    "format": "prettier \"./**/*.{ts,js,tsx,jsx,md,json,yml}\" \"!./**/dist/**/*.*\" --write ",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -18,8 +18,8 @@
     "@mediamonks/prettier-config": "^1.0.1",
     "eslint": "^8.28.0",
     "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1"
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3"
   },
   "engines": {
     "node": ">=16"
@@ -41,6 +41,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,md,json}": "prettier --write"
+    "*.{ts,js,tsx,jsx,md,json,yml}": "prettier --write"
   }
 }
