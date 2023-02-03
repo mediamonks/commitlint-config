@@ -26,4 +26,15 @@ describe('The "processCommitMessage" function', () => {
       }),
     ).toBeTruthy();
   });
+
+  it('should not try to find a ticket when passing prefix but nothing in branch', () => {
+    // should not throw an error when called
+    expect(
+      processCommitMessage({
+        message: 'Something else',
+        branch: 'feature/board-of-directors',
+        issuePrefix: 'ABCD-',
+      }),
+    ).toBeTruthy();
+  });
 });
