@@ -159,7 +159,7 @@ The ${chalk.blue(
   }
 
   let ticketInBranch = getTicketFromBranch(branch, issuePattern.branchPattern);
-  if (issuePrefix && !ticketInBranch?.startsWith(issuePrefix)) {
+  if (ticketInBranch && issuePrefix && !ticketInBranch.startsWith(issuePrefix)) {
     ticketInBranch = `${issuePrefix}${ticketInBranch}`;
   }
 
