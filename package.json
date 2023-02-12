@@ -16,7 +16,7 @@
     "@commitlint/cli": "^17.4.2",
     "@mediamonks/eslint-config": "*",
     "@mediamonks/prettier-config": "^1.0.1",
-    "eslint": "^8.28.0",
+    "eslint": "^8.34.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3"
