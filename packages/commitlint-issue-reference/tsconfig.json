@@ -3,23 +3,44 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Basic Options */
-    "target": "ES2020" /* ES2020 should be safe to use in browsers */,
-    "module": "NodeNext" /* Required for ESM mode */,
-    "lib": ["DOM", "ESNext"] /* Specify library files to be included in the compilation. */,
+
+    // ES2020 should be safe to use in browsers
+    "target": "ES2020",
+    // Required for ESM mode
+    "module": "NodeNext",
+    // Specify library files to be included in the compilation.
+    "lib": ["DOM", "ESNext"],
+
+    // Explicitly specify libraries that should load types in the global scope.
+    // This is useful if there are libraries in the devDependencies that have
+    // conflicts or are not used at all.
+    // "types": [],
 
     /* Strict Type-Checking Options */
-    "strict": true /* Enable all strict type-checking options. */,
-    "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
+
+    // Enable all strict type-checking options.
+    "strict": true,
+    // Include 'undefined' in index signature results.
+    "noUncheckedIndexedAccess": true,
 
     /* Module Resolution Options */
-    "moduleResolution": "NodeNext" /* Required for ESM mode, forces the .js extension for local imports */,
-    "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
-    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+
+    // Required for ESM mode, forces the .js extension for local imports.
+    "moduleResolution": "NodeNext",
+    // Allow default imports from modules with no default export.
+    // This does not affect code emit, just typechecking.
+    "allowSyntheticDefaultImports": true,
+    // Enables emit interoperability between CommonJS and ES Modules
+    // via creation of namespace objects for all imports.
+    // Implies 'allowSyntheticDefaultImports'.
+    "esModuleInterop": true,
 
     /* Advanced Options */
-    "skipLibCheck": false /* Enable to skip type checking of declaration files. */,
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-    "importsNotUsedAsValues": "error" /* Specify emit/checking behavior for imports that are only used for types. */,
+
+    // Enable to skip type checking of declaration files.
+    "skipLibCheck": false,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
 
     "outDir": "./dist"
   },
