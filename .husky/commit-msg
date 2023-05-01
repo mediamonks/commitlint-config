@@ -3,4 +3,4 @@
 
 npx --no -- commitlint --edit ${1}
 
-npx @mediamonks/commitlint-issue-reference --file ${1} --issuePrefix "#" -l footer
+npx @mediamonks/commitlint-issue-reference --file ${1}

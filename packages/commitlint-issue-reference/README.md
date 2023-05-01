@@ -92,6 +92,54 @@ The commit message. If not passed, it will read it from the `file` or `stdin`.
 
 The current git branch. If not passed, it will use the current git branch.
 
+### Config File
+
+- CLI: `-c, --configFile`
+- API: `configFile`
+- Type: `string`
+- Default: The `package.json` in the repository root.
+
+A path to the configuration file that contains a configuration object with support for the following
+options:
+
+- `autoAdd`
+- `location`
+- `issuePrefix`
+- `issueCommitPattern`
+- `issueBranchPattern`
+- `debug` (is only enabled after the config file has been loaded)
+
+By default, it looks up the `package.json` in the repository root. You can specify an absolute or
+relative path (from the repository root) to another `package.json` file.
+
+The `package.json` should contain a configuration object name `commitlintIssueReference` that
+contains the supported options, for example?
+
+```json
+// package.json
+{
+  ...
+  "commitlintIssueReference": {
+    "autoAdd": true,
+    "location": "header",
+    "issuePrefix": "#",
+    "issueCommitPattern": "(?<issue>#\\d+):",
+    "issueBranchPattern": "(?:^|/)(\\d+)-",
+    "debug": true
+  },
+  ...
+}
+```
+
+> **Note for windows users or cross-platform setups:**
+>
+> In CMD/PowerShell, specifying CLI arguments that contain special characters like `>` and '|' can
+> be interpreted as IO instructions depending on the way the `npx` command is executed or forwarded
+> by "version managers".
+>
+> These characters are often used when defining regular expressions. In such cases, we recommend
+> using the configuration file instead.
+
 ### Auto add
 
 - CLI: `-a, --auto-add`
@@ -232,6 +280,12 @@ Run the command on the message about to be committed:
 
 ```shell
 commitlint-issue-reference -f .git/COMMIT_EDITMSG
+```
+
+Explicitly pass a different path to the config file:
+
+```shell
+cli.js -f .git/COMMIT_EDITMSG -c ./apps/web/package.json
 ```
 
 Pass an explicit commit message:

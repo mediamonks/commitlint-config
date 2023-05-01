@@ -29,6 +29,11 @@
       "./packages/commitlint-config"
     ]
   },
+  "commitlintIssueReference": {
+    "autoAdd": true,
+    "location": "footer",
+    "issuePrefix": "#"
+  },
   "prettier": "@mediamonks/prettier-config",
   "eslintConfig": {
     "extends": "@mediamonks/eslint-config",
