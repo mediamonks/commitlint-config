@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import getStdin from 'get-stdin';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -17,6 +18,7 @@ yargs(hideBin(process.argv))
         processCommitMessage({
           ...argv,
           message: argv.message ?? (stdInput || undefined),
+          configFile: argv.configFile ?? resolve(process.cwd(), './package.json'),
         }) === false
       ) {
         // eslint-disable-next-line unicorn/no-process-exit
@@ -24,8 +26,12 @@ yargs(hideBin(process.argv))
       }
     },
   )
-  .example('$0 -f .git/COMMIT_EDITMSG', 'Run the command on the message about to be committed')
-  .example('$0 -m "Add a commit message subject"', 'Pass an explicit commit message')
+  .example('$0 -f .git/COMMIT_EDITMSG', 'Run the command on the message about to be committed.')
+  .example(
+    '$0 -f .git/COMMIT_EDITMSG -c ./apps/web/package.json',
+    'Explicitly pass a different path to the config file.',
+  )
+  .example('$0 -m "Add a commit message subject"', 'Pass an explicit commit message.')
   .example('echo "Commit message" | $0', 'Use the stdin as message to validate')
   .example('$0 -m "msg" -b "feature/ABC-123-branch-name', 'Pass an explicit branch name.')
   .example(
@@ -63,6 +69,13 @@ yargs(hideBin(process.argv))
     describe: 'The current git branch. If not passed, it will use the current git branch.',
     type: 'string',
   })
+  .option('c', {
+    alias: 'configFile',
+    default: undefined,
+    describe:
+      'The path to the config file. By default it resolves the package.json in the root of the repository.',
+    type: 'string',
+  })
   .option('a', {
     alias: 'auto-add',
     default: undefined,
@@ -72,8 +85,8 @@ yargs(hideBin(process.argv))
   })
   .option('l', {
     alias: 'location',
-    default: 'header',
-    describe: 'The location of the ticket in the commit message',
+    default: undefined,
+    describe: 'The location of the ticket in the commit message. Default is header.',
     type: 'string',
     choices: ['header', 'footer'],
   })
@@ -99,7 +112,7 @@ yargs(hideBin(process.argv))
   })
   .option('d', {
     alias: 'debug',
-    default: false,
+    default: undefined,
     describe: 'Show debug information',
     type: 'boolean',
   })

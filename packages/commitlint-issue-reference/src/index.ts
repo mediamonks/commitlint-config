@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
 import * as childProcess from 'node:child_process';
+import { readFileSync, existsSync } from 'node:fs';
+import { relative } from 'node:path';
 import chalk from 'chalk';
 import { processFooter } from './processors/processFooter.js';
 import { processHeader } from './processors/processHeader.js';
@@ -18,6 +20,7 @@ export type LintOptions = {
   file?: string;
   message?: string;
   branch?: string;
+  configFile?: string;
   autoAdd?: boolean;
   location?: 'header' | 'footer';
   issuePrefix?: string;
@@ -43,8 +46,9 @@ export default function processCommitMessage({
   file,
   message,
   branch,
+  configFile,
   autoAdd,
-  location = 'header',
+  location,
   issuePrefix,
   issueCommitPattern,
   issueBranchPattern,
@@ -52,9 +56,54 @@ export default function processCommitMessage({
 }: LintOptions): boolean | undefined {
   if (debug) {
     /* eslint-disable no-console */
+    console.log(chalk.grey(`[debug] OPTIONS`));
     console.log(chalk.grey(`[debug] file: ${file}`));
     console.log(chalk.grey(`[debug] message: ${message}`));
     console.log(chalk.grey(`[debug] branch: ${branch}`));
+    console.log(chalk.grey(`[debug] configFile: ${configFile}`));
+    console.log(chalk.grey(`[debug] autoAdd: ${autoAdd}`));
+    console.log(chalk.grey(`[debug] location: ${location}`));
+    console.log(chalk.grey(`[debug] issuePrefix: ${issuePrefix}`));
+    console.log(chalk.grey(`[debug] issueCommitPattern: ${issueCommitPattern}`));
+    console.log(chalk.grey(`[debug] issueBranchPattern: ${issueBranchPattern}`));
+    /* eslint-enable no-console */
+  }
+
+  // load config file from disk (package.json),
+  // and get the configuration object from the "commitlintIssueReference" key
+  if (configFile) {
+    const fileDoesExist = existsSync(configFile);
+    const isDefaultPath = relative(process.cwd(), configFile) === 'package.json';
+
+    if (!fileDoesExist && !isDefaultPath) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `Error: Config file "${chalk.blue(configFile)}" does not exist.
+Resolved from "${chalk.blue(process.cwd())}."`,
+      );
+      return false;
+    }
+
+    if (fileDoesExist) {
+      const contents = readFileSync(configFile, 'utf8');
+      const config = JSON.parse(contents).commitlintIssueReference ?? {};
+
+      // set values from config file if they are not explicitly set
+      location ??= config.location;
+      autoAdd ??= config.autoAdd;
+      issuePrefix ??= config.issuePrefix;
+      issueCommitPattern ??= config.issueCommitPattern;
+      issueBranchPattern ??= config.issueBranchPattern;
+      debug ??= config.debug;
+    }
+  }
+
+  // set default values if they have not been set
+  location ??= 'header';
+
+  if (debug) {
+    /* eslint-disable no-console */
+    console.log(chalk.grey(`[debug] RESOLVED`));
     console.log(chalk.grey(`[debug] autoAdd: ${autoAdd}`));
     console.log(chalk.grey(`[debug] location: ${location}`));
     console.log(chalk.grey(`[debug] issuePrefix: ${issuePrefix}`));
