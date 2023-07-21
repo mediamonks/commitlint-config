@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mediamonks/commitlint-config.git"
+    "url": "https://github.com/mediamonks/commitlint-config.git"
   },
   "author": "frontend.monks",
   "license": "MIT",
