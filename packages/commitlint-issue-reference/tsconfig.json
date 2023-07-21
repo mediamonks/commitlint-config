@@ -40,7 +40,7 @@
     // Enable to skip type checking of declaration files.
     "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
 
     "outDir": "./dist"
   },
