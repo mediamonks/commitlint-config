@@ -9,6 +9,7 @@
   "scripts": {
     "lint": "npm run lint --workspaces --if-present",
     "fix": "npm run fix --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
     "format": "prettier \"./**/*.{ts,js,tsx,jsx,md,json,yml}\" \"!./**/dist/**/*.*\" --write ",
     "prepare": "husky install"
   },
