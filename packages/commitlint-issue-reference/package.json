@@ -112,7 +112,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@commitlint/is-ignored": "^17.4.2",
+    "@commitlint/is-ignored": "^17.7.0",
     "@types/get-stdin": "^7.0.0",
     "chalk": "^4.1.2",
     "get-stdin": "^9.0.0",
