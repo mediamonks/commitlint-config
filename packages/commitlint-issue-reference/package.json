@@ -108,14 +108,13 @@
     "tsm": "^2.3.0",
     "typescript": "^5.0.4"
   },
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "dependencies": {
     "@commitlint/is-ignored": "^17.4.2",
-    "@types/get-stdin": "^7.0.0",
     "chalk": "^4.1.2",
     "get-stdin": "^9.0.0",
     "yargs": "^17.6.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
