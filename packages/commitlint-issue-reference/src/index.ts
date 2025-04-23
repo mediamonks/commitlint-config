@@ -34,7 +34,13 @@ function getGitBranch(): string {
     'rev-parse',
     '--abbrev-ref',
     'HEAD',
-  ]);
+  ], {
+    env: {
+      ...process.env,
+      GIT_DIR: undefined, // Unset problematic env var for this command
+      GIT_WORK_TREE: undefined
+    }
+  });
 
   if (status !== 0) {
     throw new Error(stderr.toString());
