@@ -88,7 +88,7 @@
     ]
   },
   "devDependencies": {
-    "@jest/globals": "^29.3.1",
+    "@jest/globals": "^29.7.0",
     "@mediamonks/eslint-config": "^2.0.7",
     "@mediamonks/eslint-config-typescript": "^1.0.9",
     "@mediamonks/prettier-config": "^1.0.1",
